@@ -1,0 +1,79 @@
+#image1 {
+    position: absolute;
+    top: 0vh;
+    left: 0px;
+    width: 100vh;
+    height: 100vh; 
+    z-index: -1;
+}
+
+#outside-container {
+    position: absolute;
+    display:flex;
+    justify-content: space-between;
+    margin: 1vh;
+    width: 80%;
+    top: 90px;
+    left: 100px;
+}
+
+#container1 {
+    position: relative;
+    text-align: center;
+}
+
+#heading1 {
+    position: relative;
+    font-size: 60px;
+}
+
+#paragraph1 {
+    position: relative;
+    font-size: 25px;
+}
+
+#image2 {
+    position: relative;
+    width: 350px;
+    height: 300px;
+    z-index: 1;
+}
+
+#container2{
+    position: relative;
+}
+
+#inside-container2 {
+    position:relative;
+    text-align: center;
+}
+
+#paragraph2 {
+    position: relative;
+    font-size: 30px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form button {
+    display: block;
+    width: 300px;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    width: auto;
+}
+
+#signup-form {
+    position: relative;
+}
+
+#login-form {
+    position: relative;
+}

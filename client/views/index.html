@@ -1,10 +1,38 @@
 <!doctype html>
 <html>
     <head>
-        <title>SD2 Project!</title>
+        <title>Twanger Login</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" type="text/css" href="css/indexStyles.css">
     </head>
-    <body>
-        <h1>Hello SD2 Project!</h1>
-        <p>This is working.</p>
+    <body style="background-color: sienna;">
+        <img src="../img/rustic.png" id="image1" class="background-image" alt="Background Image">
+        <div id="outside-container" class="container">
+            <div id="container1" class="container">
+                <h1 class="white-text" id="heading1">Welcome to Twanger!</h1>
+                <p class="white-text" id="paragraph1">The social media for country music fans!</p>
+                <img src="../img/countryTwitter.png" id="image2" class="foreground-image" alt="Foreground Image"/>
+            </div>
+
+            <div id="container2" class="container">
+                <div id="inside-container2" class="container">
+                    <p1 id="paragraph2" class="white-text">Join Today!</p1>
+                </div>
+                <form id="signup-form" class="white-text">
+                    <h2>Sign Up</h2>
+                    <input type="email" placeholder="Email" required>
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button id="signup-button" type="submit">Sign Up</button>
+                </form>
+                <form id="login-form" class="white-text">
+                    <h2>Login</h2>
+                    <input type="text" placeholder="Username" required>
+                    <input type="password" placeholder="Password" required>
+                    <button id="login-button" type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+        <script src="js/index.js"></script>
     </body>
 </html>
