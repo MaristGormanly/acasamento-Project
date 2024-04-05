@@ -19,6 +19,9 @@ router.patch('/:index', userController.partialUpdateUser);
 // Route for deleting a user
 router.delete('/:index', userController.deleteUser);
 
+// Route for searching for a user
+router.post('/search', userController.searchUsers);
+
 module.exports = router;
 
 console.log("[userRoute] initialized");

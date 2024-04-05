@@ -1,4 +1,5 @@
 const User = require('../model/user');
+const userService = require('../service/userService');
 
 let users = [];
 
@@ -74,6 +75,12 @@ exports.deleteUser = (req, res) => {
     } else {
         res.status(404).send("User not found");
     }
+}
+
+exports.searchUsers = (req, res) => {
+    const criteria = req.body;
+    const matchingUsers = userService.searchUsers(criteria, users);
+    res.json(matchingUsers);
 }
 
 console.log("[userController] initialized");
