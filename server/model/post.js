@@ -3,6 +3,7 @@ class Post {
         this.author = author;
         this.title = title;
         this.body = body;
+        this.likes = 0;
     }
 }
 

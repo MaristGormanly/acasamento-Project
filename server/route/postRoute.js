@@ -19,4 +19,8 @@ router.patch('/:index', postController.partialUpdatePost);
 // Route for deleting a post
 router.delete('/:index', postController.deletePost);
 
+router.post('/:index/like', postController.likePost);
+
+router.post('/:index/unlike', postController.unlikePost);
+
 module.exports = router;

@@ -73,4 +73,30 @@ exports.deletePost = (req, res) => {
     }
 }
 
+// POST Request (like)
+exports.likePost = (req, res) => {
+    const index = req.params.index;
+
+    if (index >= 0 && index < posts.length) {
+        posts[index].likes++;
+        res.setHeader('Content-Type', 'application/json');
+        res.send(posts[index]);
+    } else {
+        res.status(404).send("Post not found");
+    }
+}
+
+// POST Request (unlike)
+exports.unlikePost = (req, res) => {
+    const index = req.params.index;
+
+    if (index >= 0 && index < posts.length && posts[index].likes > 0) {
+        posts[index].likes--;
+        res.setHeader('Content-Type', 'application/json');
+        res.send(posts[index]);
+    } else {
+        res.status(404).send("Post not found or no likes to remove");
+    }
+}
+
 console.log("[postController] initialized");

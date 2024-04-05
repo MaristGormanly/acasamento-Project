@@ -77,6 +77,7 @@ exports.deleteUser = (req, res) => {
     }
 }
 
+// POST Request (search)
 exports.searchUsers = (req, res) => {
     const criteria = req.body;
     const matchingUsers = userService.searchUsers(criteria, users);
