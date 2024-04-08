@@ -3,13 +3,13 @@ const userService = require('../service/userService');
 
 let users = [];
 
-let brian = User.createUser("Kyrie", "Irving", "kirving@email.com", "@kyrieirving", "KIpass");
+let brian = User.createUser("001", "Kyrie", "Irving", "kirving@email.com", "@kyrieirving", "KIpass");
 users.push(brian);
 
-let aj = User.createUser("AJ", "Casamento", "andrew.casamento1@marist.edu", "@aj.casamento", "password");
+let aj = User.createUser("002", "AJ", "Casamento", "andrew.casamento1@marist.edu", "@aj.casamento", "password");
 users.push(aj);
 
-let elon = User.createUser("Elon", "Musk", "muskman@email.com", "@Elon", "twittersucks123");
+let elon = User.createUser("003", "Elon", "Musk", "muskman@email.com", "@Elon", "twittersucks123");
 users.push(elon);
 
 // GET Request
@@ -82,6 +82,44 @@ exports.searchUsers = (req, res) => {
     const criteria = req.body;
     const matchingUsers = userService.searchUsers(criteria, users);
     res.json(matchingUsers);
+}
+
+// POST Request (follow)
+exports.followUser = (req, res) => {
+    const userId = req.params.userId;
+    const currentUser = users.find(user => user.userId === userId);
+    const userToFollowId = req.body.userToFollowId;
+    const userToFollow = users.find(user => user.userId === userToFollowId);
+
+    if (!currentUser || !userToFollow) {
+        return res.status(404).send("User not found");
+    }
+
+    if (currentUser.following.includes(userToFollowId)) {
+        return res.status(400).send("You are already following this user");
+    }
+
+    currentUser.following.push(userToFollowId);
+    res.status(200).send("User followed successfully");
+}
+
+// POST Request (unfollow)
+exports.unfollowUser = (req, res) => {
+    const userId = req.params.userId;
+    const currentUser = users.find(user => user.id === userId);
+    const userToUnfollowId = req.body.userToUnfollowId;
+
+    if (!currentUser) {
+        return res.status(404).send("User not found");
+    }
+
+    const index = currentUser.following.indexOf(userToUnfollowId);
+    if (index === -1) {
+        return res.status(400).send("You are not following this user");
+    }
+
+    currentUser.following.splice(index, 1);
+    res.status(200).send("User unfollowed successfully");
 }
 
 console.log("[userController] initialized");

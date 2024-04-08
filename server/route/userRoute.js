@@ -22,6 +22,12 @@ router.delete('/:index', userController.deleteUser);
 // Route for searching for a user
 router.post('/search', userController.searchUsers);
 
+// Route for following a user
+router.post('/:userId/follow', userController.followUser);
+
+// Route for unfollowing a user
+router.post('/:userId/unfollow', userController.unfollowUser);
+
 module.exports = router;
 
 console.log("[userRoute] initialized");
