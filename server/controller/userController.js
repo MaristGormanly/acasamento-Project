@@ -26,7 +26,7 @@ exports.getUser = (req, res) => {
 
 // POST Request
 exports.saveUser = (req, res) => {
-    let newUser = User.createUser(req.body.firstName, req.body.lastName, req.body.email, req.body.username, req.body.password);
+    let newUser = User.createUser(req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.username, req.body.password);
     users.push(newUser);
     res.setHeader('Content-Type', 'application/json');
     res.send(users);
@@ -106,7 +106,7 @@ exports.followUser = (req, res) => {
 // POST Request (unfollow)
 exports.unfollowUser = (req, res) => {
     const userId = req.params.userId;
-    const currentUser = users.find(user => user.id === userId);
+    const currentUser = users.find(user => user.userId === userId);
     const userToUnfollowId = req.body.userToUnfollowId;
 
     if (!currentUser) {
