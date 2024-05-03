@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+
 function displayLoggedInUser() {
     const user = JSON.parse(sessionStorage.getItem('currentUser'));
     const welcomeContainer = document.getElementById('user-welcome-container');
@@ -72,6 +74,7 @@ function createPostElement(post) {
     // Delete button
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.dataset.postId = post.Id;
     deleteButton.onclick = () => deletePost(post.id);
 
     // Like button
@@ -185,7 +188,7 @@ function likePost(postId) {
     .then(response => response.json())
     .then(data => {
         console.log('Liked post:', data);
-        updateLikeCount(postId, data.likes);
+        updateLikeCount(postId, data.post.likes);
     }).catch(error => console.error('Error liking post:', error));
 }
 
@@ -195,7 +198,7 @@ function unlikePost(postId) {
     }).then(response => response.json())
       .then(data => {
           console.log('Unliked post:', data);
-          updateLikeCount(postId, data.likes);
+          updateLikeCount(postId, data.post.likes);
       }).catch(error => console.error('Error unliking post:', error));
 }
 

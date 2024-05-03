@@ -18,12 +18,12 @@ router.put('/:index', postController.updatePost);
 router.patch('/:index', postController.partialUpdatePost);
 
 // Route for deleting a post
-router.delete('/:index', postController.deletePost);
+router.delete('/:postId', postController.deletePost);
 
 // Route for liking a post
-router.post('/:index/like', postController.likePost);
+router.post('/:postId/like', postController.likePost);
 
 // Route for unliking a post
-router.post('/:index/unlike', postController.unlikePost);
+router.post('/:postId/unlike', postController.unlikePost);
 
 module.exports = router;

@@ -15,3 +15,5 @@ CREATE TABLE follows (
     FOREIGN KEY (follower_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (followed_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+CREATE TABLE s24.posts (id SERIAL PRIMARY KEY, title VARCHAR, body VARCHAR, likes INTEGER DEFAULT 0);

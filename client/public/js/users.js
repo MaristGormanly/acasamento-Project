@@ -45,8 +45,8 @@ function createUserElement(user) {
     userDiv.appendChild(userName);
     userDiv.appendChild(followButton);
     userDiv.appendChild(unfollowButton);
-    userDiv.appendChild(followCount);
     userDiv.appendChild(deleteButton);
+    userDiv.appendChild(followCount);
 
     return userDiv;
 }
