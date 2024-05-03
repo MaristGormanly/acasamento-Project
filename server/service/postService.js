@@ -6,7 +6,7 @@ const pool = new Pool ({
     user: 's24',
     host: 'localhost',
     database: 's24',
-    password: 'newpassword',
+    password: 's24',
     port: '5432',
 });
 
