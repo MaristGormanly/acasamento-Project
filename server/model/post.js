@@ -1,5 +1,8 @@
+let currentId = -1;
+
 class Post {
     constructor (author, title, body) {
+        this.id = ++currentId;
         this.author = author;
         this.title = title;
         this.body = body;

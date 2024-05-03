@@ -9,3 +9,33 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
+#user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 20px; 
+}
+
+.user {
+    background-color: rgb(53, 53, 53); 
+    border: 1px solid #ccc; 
+    padding: 10px 20px;
+    margin: 10px 0; 
+    width: 20%; 
+    text-align: center; 
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: sienna; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: sienna;
+}

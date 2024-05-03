@@ -6,9 +6,21 @@
         <link rel="stylesheet" type="text/css" href="css/feedStyles.css">
     </head>
     <body>
-        <button id="back-button" type="submit">Back</button>   
+        <button id="back-button" type="submit">Back</button>
+        <button id="users-button" type="button">View Users</button>   
         <h1 id="heading1" class="white-text">For you</h1>
-        <div id="container1" class="container">
+        <div id="user-welcome-container" class="container white-text">
+            <!-- Welcome message will be inserted here -->
+        </div>
+        <div id="post-form-container" class="container">
+            <h2 id="heading2" class="white-text">New post</h2>
+            <form id="new-post-form">
+                <input type="text" id="post-title" placeholder="Post title" required>
+                <textarea id="post-body" placeholder="Post body" required></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <div id="container2" class="container">
             <script src="js/feed.js"></script>
         </div>
     </body>

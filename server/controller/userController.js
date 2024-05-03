@@ -1,20 +1,15 @@
+console.log("[userController] initialized");
+
 const User = require('../model/user');
 const userService = require('../service/userService');
+const { pool } = require('../service/userService');
 
 let users = [];
 
-let brian = User.createUser("001", "Kyrie", "Irving", "kirving@email.com", "@kyrieirving", "KIpass");
-users.push(brian);
-
-let aj = User.createUser("002", "AJ", "Casamento", "andrew.casamento1@marist.edu", "@aj.casamento", "password");
-users.push(aj);
-
-let elon = User.createUser("003", "Elon", "Musk", "muskman@email.com", "@Elon", "twittersucks123");
-users.push(elon);
-
 // GET Request
-exports.getAllUsers = (req, res) => {
+exports.getAllUsers = async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
+    let users = await userService.getAllUsers();
     res.send(users);
 }
 
@@ -26,11 +21,18 @@ exports.getUser = (req, res) => {
 
 // POST Request
 exports.saveUser = (req, res) => {
-    let newUser = User.createUser(req.body.userId, req.body.firstName, req.body.lastName, req.body.email, req.body.username, req.body.password);
-    users.push(newUser);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(users);
-}
+    const { firstname, lastname, email, username, password } = req.body;
+    const queryText = 'INSERT INTO s24.users (firstname, lastname, email, username, password) VALUES ($1, $2, $3, $4, $5) RETURNING *;';
+    pool.query(queryText, [firstname, lastname, email, username, password])
+        .then(result => {
+            console.log("New user created:", result.rows[0]);
+            res.status(201).json(result.rows[0]);
+        })
+        .catch(e => {
+            console.error('Error inserting new user:', e);
+            res.status(500).send('Failed to create user');
+        });
+};
 
 // PUT Request
 exports.updateUser = (req, res) => {
@@ -66,16 +68,17 @@ exports.partialUpdateUser = (req, res) => {
 }
 
 // DELETE Request
-exports.deleteUser = (req, res) => {
-    const index = req.params.index;
+exports.deleteUser = async (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const queryText = 'DELETE FROM s24.users WHERE id = $1 RETURNING *;';
+    const result = await pool.query(queryText, [userId]);
 
-    if (index >= 0 && index < users.length) {
-        users.splice(index, 1);
-        res.send(users);
+    if (result.rowCount > 0) {
+        res.status(200).send({ message: "User deleted successfully" });
     } else {
-        res.status(404).send("User not found");
+        res.status(404).send({ message: "User not found" });
     }
-}
+};
 
 // POST Request (search)
 exports.searchUsers = (req, res) => {
@@ -85,41 +88,46 @@ exports.searchUsers = (req, res) => {
 }
 
 // POST Request (follow)
-exports.followUser = (req, res) => {
-    const userId = req.params.userId;
-    const currentUser = users.find(user => user.userId === userId);
-    const userToFollowId = req.body.userToFollowId;
-    const userToFollow = users.find(user => user.userId === userToFollowId);
+exports.followUser = async (req, res) => {
+    const userId = parseInt(req.params.userId);
+    const userToFollowId = parseInt(req.body.userToFollowId);
 
-    if (!currentUser || !userToFollow) {
-        return res.status(404).send("User not found");
+    if (isNaN(userId) || isNaN(userToFollowId)) {
+        return res.status(400).send({ message: "Invalid IDs provided." });
     }
 
-    if (currentUser.following.includes(userToFollowId)) {
-        return res.status(400).send("You are already following this user");
+    try {
+        const result = await pool.query(
+            "INSERT INTO follows (follower_id, followed_id) VALUES ($1, $2) RETURNING *;",
+            [userId, userToFollowId]
+        );
+        if (result.rowCount > 0) {
+            res.status(200).send({ message: "User followed successfully", followDetails: result.rows[0] });
+        } else {
+            res.status(400).send({ message: "Unable to follow user" });
+        }
+    } catch (error) {
+        console.error("Database error during follow operation:", error);
+        res.status(500).send({ message: "Error following user", error: error.message });
     }
-
-    currentUser.following.push(userToFollowId);
-    res.status(200).send("User followed successfully");
 }
 
 // POST Request (unfollow)
-exports.unfollowUser = (req, res) => {
+exports.unfollowUser = async (req, res) => {
     const userId = req.params.userId;
-    const currentUser = users.find(user => user.userId === userId);
     const userToUnfollowId = req.body.userToUnfollowId;
 
-    if (!currentUser) {
-        return res.status(404).send("User not found");
+    try {
+        const result = await pool.query(
+            "DELETE FROM follows WHERE follower_id = $1 AND followed_id = $2",
+            [userId, userToUnfollowId]
+        );
+        if (result.rowCount > 0) {
+            res.status(200).send({ message: "User unfollowed successfully" });
+        } else {
+            res.status(404).send({ message: "Follow relationship not found" });
+        }
+    } catch (error) {
+        res.status(500).send({ message: "Error unfollowing user" });
     }
-
-    const index = currentUser.following.indexOf(userToUnfollowId);
-    if (index === -1) {
-        return res.status(400).send("You are not following this user");
-    }
-
-    currentUser.following.splice(index, 1);
-    res.status(200).send("User unfollowed successfully");
 }
-
-console.log("[userController] initialized");

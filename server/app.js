@@ -15,7 +15,11 @@ app.get('/', function (req, res) {
 
 app.get('/feed', function (req, res) {
     res.sendFile('feed.html', {root: './client/views'})
-})
+});
+
+app.get('/users', function (req, res) {
+    res.sendFile('users.html', {root: './client/views'})
+});
 
 app.use(express.static('client/public'));
 

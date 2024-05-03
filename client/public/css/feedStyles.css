@@ -11,7 +11,33 @@ body {
     font-size: 25px;
 }
 
-#container1 {
+#users-button {
+    position: absolute;
+    background-color:sienna;
+    color: white;
+    right: 25px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 25px;
+}
+
+#heading2 {
+    margin: 2px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#post-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container2 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,8 +48,9 @@ body {
 #heading1 {
     position: relative;
     text-align: center;
-    top: 50px;
+    top: 20px;
     font-size: 40px;
+    margin-bottom: 40px;
 }
 
 .post {
@@ -37,4 +64,26 @@ body {
     text-align: center;
     color: white;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#new-post-form input[type="text"],
+#new-post-form textarea {
+    width: 300px;
+    margin: 10px;
+    display: block;
+}
+
+#new-post-form button {
+    display: block;
+    margin: 0 auto;
+    background-color: sienna;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#user-welcome-container {
+    padding: 20px;
 }

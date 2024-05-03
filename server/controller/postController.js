@@ -63,15 +63,15 @@ exports.partialUpdatePost = (req, res) => {
 
 // DELETE Request
 exports.deletePost = (req, res) => {
-    const index = req.params.index;
-
-    if (index >= 0 && index < posts.length) {
+    const postId = parseInt(req.params.index);
+    const index = posts.findIndex(post => post.id === postId);
+    if (index > -1) {
         posts.splice(index, 1);
-        res.send(posts);
+        res.status(200).send({ message: "Post deleted successfully" });
     } else {
-        res.status(404).send("Post not found");
+        res.status(404).send({ message: "Post not found" });
     }
-}
+};
 
 // POST Request (like)
 exports.likePost = (req, res) => {

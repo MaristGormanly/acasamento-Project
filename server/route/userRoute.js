@@ -1,3 +1,5 @@
+console.log("[userRoute] initialized");
+
 var express = require('express');
 var router = express.Router();
 const userController = require('../controller/userController');
@@ -17,7 +19,7 @@ router.put('/:index', userController.updateUser);
 router.patch('/:index', userController.partialUpdateUser);
 
 // Route for deleting a user
-router.delete('/:index', userController.deleteUser);
+router.delete('/:userId', userController.deleteUser);
 
 // Route for searching for a user
 router.post('/search', userController.searchUsers);
@@ -29,5 +31,3 @@ router.post('/:userId/follow', userController.followUser);
 router.post('/:userId/unfollow', userController.unfollowUser);
 
 module.exports = router;
-
-console.log("[userRoute] initialized");

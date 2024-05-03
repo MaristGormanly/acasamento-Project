@@ -6,31 +6,29 @@
         <link rel="stylesheet" type="text/css" href="css/indexStyles.css">
     </head>
     <body style="background-color: sienna;">
-        <img src="../img/rustic.png" id="image1" class="background-image" alt="Background Image">
+        <img id="image1" src="../img/rustic.png" class="background-image" alt="Background Image">
         <div id="outside-container" class="container">
             <div id="container1" class="container">
-                <h1 class="white-text" id="heading1">Welcome to Twanger!</h1>
-                <p class="white-text" id="paragraph1">The social media for country music fans!</p>
+                <h1 id="heading1" class="white-text">Welcome to Twanger!</h1>
+                <p id="paragraph1" class="white-text">The social media for country music fans!</p>
                 <img src="../img/countryTwitter.png" id="image2" class="foreground-image" alt="Foreground Image"/>
             </div>
-
             <div id="container2" class="container">
                 <div id="inside-container2" class="container">
                     <p1 id="paragraph2" class="white-text">Join Today!</p1>
+                    <form id="signup-form" class="white-text">
+                        <h2>Sign Up</h2>
+                        <input type="text" id="signup-firstname" placeholder="firstName" required>
+                        <input type="text" id="signup-lastname" placeholder="lastName" required>
+                        <input type="email" id="signup-email" placeholder="Email" required>
+                        <input type="text" id="signup-username" placeholder="Username" required>
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                        <button id="signup-button" type="submit">Sign Up</button>
+                    </form>
+                <div id="inside-container2" class="white-text">
+                    <h2>Select a User to Log In</h2>
+                    <ul id="user-list"></ul>
                 </div>
-                <form id="signup-form" class="white-text">
-                    <h2>Sign Up</h2>
-                    <input type="email" placeholder="Email" required>
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password" required>
-                    <button id="signup-button" type="submit">Sign Up</button>
-                </form>
-                <form id="login-form" class="white-text">
-                    <h2>Login</h2>
-                    <input type="text" placeholder="Username" required>
-                    <input type="password" placeholder="Password" required>
-                    <button id="login-button" type="submit">Login</button>
-                </form>
             </div>
         </div>
         <script src="js/index.js"></script>
