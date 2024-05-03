@@ -36,12 +36,13 @@ You can run /server/db/create-db.sql
 After ensuring that Node.js and PostgreSQL are installed and working, and your database is created, you need to create a .env file.
 - Make a copy of the .env.example file and call the copy '.env' and save it in the project home directory.
 - Install node.js dependencies:
-* npm install express
-* npm install pg
+    - npm install express
+    - npm install pg
 - Start Twanger
-* npm start
+    - npm start
 
 ----- output -----
+
 acasamento-project@1.0.0 start
 node server/app.js
 
