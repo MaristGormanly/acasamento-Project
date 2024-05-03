@@ -43,14 +43,14 @@ After ensuring that Node.js and PostgreSQL are installed and working, and your d
 
 ----- output -----
 
-acasamento-project@1.0.0 start
-node server/app.js
+    acasamento-project@1.0.0 start
+    node server/app.js
 
-[userRoute] initialized
-[userController] initialized
-[userService] initialized
-[postService] initialized
-[postController] initialized
-Twanger listening on port 1337!
+        [userRoute] initialized
+    [userController] initialized
+    [userService] initialized
+    [postService] initialized
+    [postController] initialized
+    Twanger listening on port 1337!
 
 - Navigate your web browser to http://localhost:1337
