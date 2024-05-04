@@ -46,7 +46,7 @@ After ensuring that Node.js and PostgreSQL are installed and working, and your d
     acasamento-project@1.0.0 start
     node server/app.js
 
-        [userRoute] initialized
+    [userRoute] initialized
     [userController] initialized
     [userService] initialized
     [postService] initialized
