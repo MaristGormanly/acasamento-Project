@@ -54,3 +54,6 @@ After ensuring that Node.js and PostgreSQL are installed and working, and your d
     Twanger listening on port 1337!
 
 - Navigate your web browser to http://localhost:1337
+
+### Developer Notes
+Everything on the website currently works as intended. Although, there are a couple of areas for imporvement. First, I would implement cookies so that it could keep track of which user is signed in so that a user can only like a post once and so that it could keep track of which user is following which user. All else seems to work as intended.
